@@ -1,0 +1,399 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+:root {
+    --spa-primary: #d946ef;
+    --spa-secondary: #a855f7;
+    --spa-tertiary: #ec4899;
+    --spa-gradient: linear-gradient(135deg, var(--spa-primary) 0%, var(--spa-secondary) 100%);
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --text-main: #1e293b;
+}
+
+/* ===== ESCENARIO PRINCIPAL ===== */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fdf2f8 0%, #fae8ff 50%, #f3e8ff 100%);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ONDAS DINÁMICAS DE FONDO */
+.auth-container::before,
+.auth-container::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: 1;
+    background: 
+      radial-gradient(circle at 30% 40%, rgba(217, 70, 239, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+    animation: waveRotate 25s linear infinite;
+}
+
+.auth-container::after {
+    animation: waveRotate 35s linear infinite reverse;
+    opacity: 0.5;
+}
+
+@keyframes waveRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* PARTÍCULAS (Puntos blancos) */
+.particles-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 15;
+    background-image: radial-gradient(circle, #ffffff 1.5px, transparent 1.5px);
+    background-size: 80px 80px;
+    animation: particleSlide 40s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes particleSlide {
+    from { background-position: 0 0; }
+    to { background-position: 400px 400px; }
+}
+
+/* ===== LOGO SPA MEJORADO ===== */
+.spa-logo-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Círculo exterior pulsante */
+.logo-outer-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--spa-primary);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: pulseRing 3s ease-in-out infinite;
+}
+
+@keyframes pulseRing {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: scale(1.15);
+        opacity: 0.1;
+    }
+}
+
+/* Contenedor de pétalos de flor de loto */
+.logo-lotus {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-petal {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--spa-primary) 0%, var(--spa-secondary) 100%);
+    border-radius: 50% 0 50% 0;
+    opacity: 0.85;
+    animation: petalFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 4px 12px rgba(217, 70, 239, 0.4));
+}
+
+/* Rotación dinámica de pétalos */
+.logo-petal:nth-child(1) { 
+    transform: rotate(0deg) translateY(15px);
+    animation-delay: 0s;
+}
+.logo-petal:nth-child(2) { 
+    transform: rotate(45deg) translateY(15px);
+    animation-delay: 0.1s;
+}
+.logo-petal:nth-child(3) { 
+    transform: rotate(90deg) translateY(15px);
+    animation-delay: 0.2s;
+}
+.logo-petal:nth-child(4) { 
+    transform: rotate(135deg) translateY(15px);
+    animation-delay: 0.3s;
+}
+.logo-petal:nth-child(5) { 
+    transform: rotate(180deg) translateY(15px);
+    animation-delay: 0.4s;
+}
+.logo-petal:nth-child(6) { 
+    transform: rotate(225deg) translateY(15px);
+    animation-delay: 0.5s;
+}
+.logo-petal:nth-child(7) { 
+    transform: rotate(270deg) translateY(15px);
+    animation-delay: 0.6s;
+}
+.logo-petal:nth-child(8) { 
+    transform: rotate(315deg) translateY(15px);
+    animation-delay: 0.7s;
+}
+
+@keyframes petalFloat {
+    0%, 100% { 
+        transform: rotate(var(--rotation, 0deg)) translateY(15px) scale(1);
+        opacity: 0.85;
+    }
+    50% { 
+        transform: rotate(var(--rotation, 0deg)) translateY(12px) scale(1.08);
+        opacity: 1;
+    }
+}
+
+/* Centro brillante del logo */
+.logo-center {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #ffffff 0%, var(--spa-primary) 100%);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 20px rgba(217, 70, 239, 0.6),
+        0 0 40px rgba(217, 70, 239, 0.3),
+        inset 0 0 10px rgba(255, 255, 255, 0.8);
+    animation: centerGlow 2s ease-in-out infinite;
+    z-index: 10;
+}
+
+@keyframes centerGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 0 20px rgba(217, 70, 239, 0.6),
+            0 0 40px rgba(217, 70, 239, 0.3),
+            inset 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    50% { 
+        box-shadow: 
+            0 0 30px rgba(217, 70, 239, 0.8),
+            0 0 60px rgba(217, 70, 239, 0.5),
+            inset 0 0 15px rgba(255, 255, 255, 1);
+    }
+}
+
+/* Partículas flotantes alrededor del logo */
+.logo-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--spa-primary);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatParticle 3s ease-in-out infinite;
+}
+
+.logo-particle:nth-child(9) {
+    top: 0;
+    left: 50%;
+    animation-delay: 0s;
+}
+
+.logo-particle:nth-child(10) {
+    top: 50%;
+    right: 0;
+    animation-delay: 0.5s;
+}
+
+.logo-particle:nth-child(11) {
+    bottom: 0;
+    left: 50%;
+    animation-delay: 1s;
+}
+
+.logo-particle:nth-child(12) {
+    top: 50%;
+    left: 0;
+    animation-delay: 1.5s;
+}
+
+@keyframes floatParticle {
+    0%, 100% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-20px) scale(1);
+        opacity: 1;
+    }
+}
+
+/* ===== TARJETA Y FORMULARIO ===== */
+.auth-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 40px;
+    box-shadow: 
+        0 40px 100px -20px rgba(168, 85, 247, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    width: 100%;
+    max-width: 440px;
+    padding: 3.5rem;
+    position: relative;
+    z-index: 10;
+    animation: cardEntrance 0.6s ease-out;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-group { 
+    margin-bottom: 1.5rem; 
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon-left {
+    position: absolute;
+    left: 1.25rem;
+    color: var(--spa-primary);
+    font-size: 1.25rem;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 1.1rem 1rem 1.1rem 3.5rem !important;
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid #f1f5f9;
+    border-radius: 18px;
+    font-size: 1rem;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: var(--spa-primary);
+    background: white;
+    box-shadow: 0 4px 20px rgba(217, 70, 239, 0.15);
+    transform: translateY(-2px);
+}
+
+.auth-input:focus + .input-icon-left {
+    transform: scale(1.1);
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #94a3b8;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle:hover {
+    color: var(--spa-primary);
+    transform: scale(1.1);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--spa-gradient);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(217, 70, 239, 0.3);
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(217, 70, 239, 0.4);
+}
+
+.btn-submit:hover::before {
+    left: 100%;
+}
+
+.btn-submit:active {
+    transform: translateY(-1px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 500px) {
+    .auth-card {
+        padding: 2.5rem 1.5rem;
+        border-radius: 30px;
+    }
+    
+    .spa-logo-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .logo-lotus {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .logo-petal {
+        width: 28px;
+        height: 28px;
+    }
+}

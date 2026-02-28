@@ -1,0 +1,584 @@
+.therapists-management-page {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .therapists-management-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+  }
+  
+  /* Header */
+  .tm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    gap: 2rem;
+  }
+  
+  .tm-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+  }
+  
+  .tm-title svg {
+    color: #d946ef;
+  }
+  
+  .tm-subtitle {
+    color: #6b7280;
+    margin-top: 0.5rem;
+  }
+  
+  /* Grid de Tarjetas */
+  .tm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .tm-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .tm-card:hover {
+    box-shadow: 0 10px 25px rgba(217, 70, 239, 0.1);
+    border-color: #d946ef;
+    transform: translateY(-2px);
+  }
+  
+  .tm-card-header {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .tm-avatar {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tm-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .tm-avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #d946ef, #a855f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .tm-status {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+  
+  .tm-status.active {
+    color: #10b981;
+  }
+  
+  .tm-status.inactive {
+    color: #ef4444;
+  }
+  
+  .tm-info h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .tm-specialty {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #f3e8ff;
+    color: #a855f7;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  /* Card Body */
+  .tm-card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .tm-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+  
+  .tm-detail .tm-icon {
+    color: #d946ef;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  
+  /* Card Footer */
+  .tm-card-footer {
+    padding: 1rem 1.5rem;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .tm-btn {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .tm-btn-view {
+    background: #f3e8ff;
+    color: #a855f7;
+  }
+  
+  .tm-btn-view:hover {
+    background: #e9d5ff;
+    color: #9333ea;
+  }
+  
+  .tm-btn-edit {
+    background: #dbeafe;
+    color: #3b82f6;
+  }
+  
+  .tm-btn-edit:hover {
+    background: #bfdbfe;
+    color: #2563eb;
+  }
+  
+  .tm-btn-delete {
+    background: #fee2e2;
+    color: #ef4444;
+    padding: 0.5rem;
+    flex: 0;
+  }
+  
+  .tm-btn-delete:hover {
+    background: #fecaca;
+    color: #dc2626;
+  }
+  
+  /* Empty State */
+  .tm-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 16px;
+    border: 2px dashed #e5e7eb;
+  }
+  
+  .tm-empty-icon {
+    font-size: 4rem;
+    color: #d1d5db;
+    margin-bottom: 1rem;
+  }
+  
+  .tm-empty h3 {
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .tm-empty p {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Formulario */
+  .tm-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .tm-tabs {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tm-tab {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #6b7280;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .tm-tab:hover {
+    color: #d946ef;
+    background: #faf5ff;
+  }
+  
+  .tm-tab.active {
+    color: #d946ef;
+    border-bottom-color: #d946ef;
+  }
+  
+  .tm-tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .tm-tab-content h4 {
+    font-size: 1.125rem;
+    color: #1f2937;
+    margin: 1rem 0 0.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .tm-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .tm-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .tm-form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .tm-form-group input,
+  .tm-form-group select,
+  .tm-form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+  }
+  
+  .tm-form-group input:focus,
+  .tm-form-group select:focus,
+  .tm-form-group textarea:focus {
+    outline: none;
+    border-color: #d946ef;
+    box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.1);
+  }
+  
+  .tm-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+  }
+  
+  .tm-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .tm-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  /* Modal de Pagos */
+  .tm-payments-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .tm-payments-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .tm-payment-stat {
+    background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
+    border: 1px solid #e9d5ff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .tm-payment-stat-icon {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #d946ef;
+  }
+  
+  .tm-payment-stat-icon.success {
+    color: #10b981;
+  }
+  
+  .tm-payment-stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+  }
+  
+  .tm-payment-stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  .tm-payments-table {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .tm-payments-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tm-payments-table thead {
+    background: #f9fafb;
+  }
+  
+  .tm-payments-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .tm-payments-table td {
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  
+  .tm-payments-table tbody tr:hover {
+    background: #faf5ff;
+  }
+  
+  .tm-payment-amount {
+    font-weight: 600;
+    color: #d946ef;
+  }
+  
+  .tm-payment-method {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #f3f4f6;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  
+  .tm-payments-empty {
+    padding: 3rem;
+    text-align: center;
+    color: #9ca3af;
+  }
+  
+  .tm-payments-empty svg {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .therapists-management-page {
+      padding: 1rem;
+    }
+  
+    .tm-header {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .tm-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .tm-form-row {
+      grid-template-columns: 1fr;
+    }
+  
+    .tm-tabs {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  
+    .tm-payments-summary {
+      grid-template-columns: 1fr;
+    }
+  
+    .tm-payments-table {
+      overflow-x: auto;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+  /* Upload de Foto */
+.tm-photo-upload {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  
+  .tm-photo-preview {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px dashed #d1d5db;
+    background: #f9fafb;
+    flex-shrink: 0;
+  }
+  
+  .tm-photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .tm-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    font-size: 0.875rem;
+  }
+  
+  .tm-photo-placeholder svg {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tm-photo-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+  
+  .tm-photo-remove:hover {
+    background: #dc2626;
+    transform: scale(1.1);
+  }
+  
+  .tm-photo-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .tm-photo-actions label {
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  .tm-photo-hint {
+    color: #6b7280;
+    font-size: 0.75rem;
+  }

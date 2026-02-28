@@ -1,0 +1,31 @@
+.confirm-dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+  }
+  
+  .confirm-icon {
+    font-size: 3rem;
+  }
+  
+  .confirm-danger .confirm-icon {
+    color: var(--error-color);
+  }
+  
+  .confirm-warning .confirm-icon {
+    color: var(--warning-color);
+  }
+  
+  .confirm-info .confirm-icon {
+    color: var(--info-color);
+  }
+  
+  .confirm-message {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 400px;
+  }

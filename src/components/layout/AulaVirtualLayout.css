@@ -1,0 +1,142 @@
+/* ========== AULA VIRTUAL LAYOUT ========== */
+.aulavirtual-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
+  }
+  
+  /* ========== SIDEBAR ========== */
+  .aulavirtual-sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
+    color: white;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .aulavirtual-sidebar-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .aulavirtual-back-button {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+    font-size: 1.25rem;
+  }
+  
+  .aulavirtual-back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-4px);
+  }
+  
+  .aulavirtual-sidebar-title h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 0.25rem 0;
+    color: white;
+  }
+  
+  .aulavirtual-sidebar-title p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+  
+  .aulavirtual-sidebar-nav {
+    padding: 1rem 0;
+  }
+  
+  .aulavirtual-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    position: relative;
+  }
+  
+  .aulavirtual-nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: white;
+    transform: scaleY(0);
+    transition: transform 0.3s;
+  }
+  
+  .aulavirtual-nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  .aulavirtual-nav-item:hover::before {
+    transform: scaleY(1);
+  }
+  
+  .aulavirtual-nav-item.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+  }
+  
+  .aulavirtual-nav-item.active::before {
+    transform: scaleY(1);
+  }
+  
+  .aulavirtual-nav-item svg {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+  
+  /* ========== MAIN CONTENT ========== */
+  .aulavirtual-main-content {
+    margin-left: 280px;
+    flex: 1;
+    min-height: 100vh;
+    width: calc(100% - 280px);
+  }
+  
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .aulavirtual-sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+    }
+  
+    .aulavirtual-sidebar.open {
+      transform: translateX(0);
+    }
+  
+    .aulavirtual-main-content {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .aulavirtual-sidebar {
+      width: 100%;
+    }
+  }

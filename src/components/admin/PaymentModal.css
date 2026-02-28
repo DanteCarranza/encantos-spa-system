@@ -1,0 +1,311 @@
+/* ========== PAYMENT MODAL ========== */
+.payment-modal-container {
+    padding: 1.5rem;
+  }
+  
+  /* Información de Reserva */
+  .payment-reservation-info {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 2px solid #e9d5ff;
+  }
+  
+  .info-grid-payment {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .info-item-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+  
+  .info-item-payment.highlight {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 2px solid #d946ef;
+  }
+  
+  .label-payment {
+    font-size: 0.8125rem;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .value-payment {
+    font-size: 1rem;
+    color: #0f172a;
+    font-weight: 600;
+  }
+  
+  .value-payment.price-total {
+    font-size: 1.125rem;
+    color: #7c3aed;
+  }
+  
+  .value-payment.saldo-pendiente {
+    font-size: 1.5rem;
+    color: #d946ef;
+    font-weight: 800;
+  }
+  
+  /* Formulario */
+  .payment-form {
+    background: white;
+  }
+  
+  .form-grid-payment {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .form-group-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-group-payment.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  .form-group-payment label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  
+  .form-input-payment {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    font-family: inherit;
+    width: 100%;
+  }
+  
+  .form-input-payment:focus {
+    outline: none;
+    border-color: #d946ef;
+    box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.1);
+  }
+  
+  .form-input-payment.error {
+    border-color: #ef4444;
+  }
+  
+  .input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-icon-payment {
+    position: absolute;
+    left: 1rem;
+    color: #94a3b8;
+    font-size: 1.25rem;
+    pointer-events: none;
+  }
+  
+  .input-with-icon .form-input-payment {
+    padding-left: 3rem;
+  }
+  
+  .error-text-payment {
+    font-size: 0.875rem;
+    color: #ef4444;
+    margin-top: -0.25rem;
+  }
+  
+  /* Métodos de Pago */
+  .payment-methods-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  
+  .payment-method-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .payment-method-option:hover {
+    border-color: #d946ef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(217, 70, 239, 0.15);
+  }
+  
+  .payment-method-option.selected {
+    border-color: #d946ef;
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    box-shadow: 0 4px 12px rgba(217, 70, 239, 0.2);
+  }
+  
+  .payment-method-icon {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 12px;
+  }
+  
+  .payment-method-option.selected .payment-method-icon {
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    filter: grayscale(0);
+  }
+  
+  .payment-method-option span {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  
+  /* Voucher Upload */
+  .voucher-upload-payment {
+    margin-top: 0.5rem;
+  }
+  
+  .voucher-upload-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1.25rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    color: #64748b;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .voucher-upload-btn:hover {
+    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+    border-color: #d946ef;
+    color: #d946ef;
+  }
+  
+  .voucher-preview-payment {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+  }
+  
+  .voucher-preview-payment img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    display: block;
+    padding: 1rem;
+  }
+  
+  .pdf-preview {
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.125rem;
+    color: #64748b;
+  }
+  
+  .remove-voucher-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239, 68, 68, 0.95);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.125rem;
+  }
+  
+  .remove-voucher-btn:hover {
+    background: #dc2626;
+    transform: scale(1.1);
+  }
+  
+  /* Acciones del Modal */
+  .payment-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #f1f5f9;
+  }
+  
+  .spinner-inline {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Responsivo */
+  @media (max-width: 1024px) {
+    .info-grid-payment {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .payment-methods-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .form-grid-payment {
+      grid-template-columns: 1fr;
+    }
+  
+    .info-grid-payment {
+      grid-template-columns: 1fr;
+    }
+  
+    .payment-methods-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .payment-modal-actions {
+      flex-direction: column-reverse;
+    }
+  
+    .payment-modal-actions .btn {
+      width: 100%;
+    }
+  }

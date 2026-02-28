@@ -1,0 +1,852 @@
+/* ========================================
+   CALENDARIO DE PAGOS PAGE
+======================================== */
+
+.calendario-pagos-page {
+    padding: 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  
+  .calendario-container {
+    width: 100%;
+  }
+  
+  /* ========================================
+     HERO HEADER
+  ======================================== */
+  
+  .calendario-hero {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+    border-radius: 24px;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    color: white;
+    box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .calendario-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .hero-content-calendario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero-text-calendario h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hero-text-calendario p {
+    font-size: 1.125rem;
+    opacity: 0.95;
+    margin: 0;
+  }
+  
+  .hero-icon-calendario {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  /* ========================================
+     STATS CARDS
+  ======================================== */
+  
+  .calendario-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-card-calendario {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: white;
+    border: 3px solid;
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+  
+  .stat-card-calendario:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  .stat-card-calendario.blue { border-color: #3b82f6; }
+  .stat-card-calendario.green { border-color: #10b981; }
+  .stat-card-calendario.orange { border-color: #f59e0b; }
+  .stat-card-calendario.red { border-color: #ef4444; }
+  
+  .stat-icon-calendario {
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .stat-card-calendario.blue .stat-icon-calendario {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+  }
+  
+  .stat-card-calendario.green .stat-icon-calendario {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+  }
+  
+  .stat-card-calendario.orange .stat-icon-calendario {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+  }
+  
+  .stat-card-calendario.red .stat-icon-calendario {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+  }
+  
+  .stat-content-calendario {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .stat-value-calendario {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+  }
+  
+  .stat-label-calendario {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* ========================================
+     TOOLBAR
+  ======================================== */
+  
+  .calendario-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .toolbar-filtros {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+  
+  .filter-group-calendario {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 2px solid #cbd5e1;
+    border-radius: 12px;
+    min-width: 200px;
+  }
+  
+  .filter-group-calendario svg {
+    font-size: 1.25rem;
+    color: #8b5cf6;
+    flex-shrink: 0;
+  }
+  
+  .filter-select-calendario {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+    cursor: pointer;
+  }
+  
+  .btn-clear-filters {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.25rem;
+    background: #ef4444;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .btn-clear-filters:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  }
+  
+  .btn-export-calendar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+  }
+  
+  .btn-export-calendar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+  }
+  
+  /* ========================================
+     LEYENDA
+  ======================================== */
+  
+  .calendario-leyenda {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .leyenda-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .leyenda-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+  }
+  
+  .leyenda-color.pagado {
+    background: #10b981;
+  }
+  
+  .leyenda-color.pendiente {
+    background: #f59e0b;
+  }
+  
+  .leyenda-color.vencido {
+    background: #ef4444;
+  }
+  
+  .leyenda-item span {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #64748b;
+  }
+  
+  /* ========================================
+     CALENDARIO WRAPPER
+  ======================================== */
+  
+  .calendario-wrapper {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Custom Toolbar */
+  .custom-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #e2e8f0;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .toolbar-navigation {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .toolbar-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: white;
+    border: 2px solid #cbd5e1;
+    border-radius: 10px;
+    font-weight: 700;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .toolbar-btn:hover {
+    border-color: #8b5cf6;
+    color: #8b5cf6;
+  }
+  
+  .toolbar-btn.today {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    border-color: #7c3aed;
+    color: white;
+  }
+  
+  .toolbar-center {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .toolbar-label {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    text-transform: capitalize;
+  }
+  
+  .toolbar-views {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.25rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+  }
+  
+  .view-btn {
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .view-btn:hover {
+    color: #8b5cf6;
+  }
+  
+  .view-btn.active {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+  }
+  
+  /* Estilos del Calendario React Big Calendar */
+  .rbc-calendar {
+    font-family: inherit;
+  }
+  
+  .rbc-header {
+    padding: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    border-bottom: 2px solid #e2e8f0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  }
+  
+  .rbc-today {
+    background-color: #fef3c7 !important;
+  }
+  
+  .rbc-off-range-bg {
+    background: #f8fafc;
+  }
+  
+  .rbc-date-cell {
+    padding: 0.5rem;
+    text-align: right;
+  }
+  
+  .rbc-now .rbc-button-link {
+    font-weight: 800;
+    color: #8b5cf6;
+  }
+  
+  .rbc-event {
+    padding: 4px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  
+  .rbc-event:hover {
+    opacity: 1 !important;
+    transform: scale(1.02);
+  }
+  
+  .rbc-day-slot .rbc-time-slot {
+    border-top: 1px solid #e2e8f0;
+  }
+  
+  .rbc-time-header-content {
+    border-left: 1px solid #e2e8f0;
+  }
+  
+  .rbc-month-view,
+  .rbc-time-view {
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .rbc-month-row {
+    border: none;
+  }
+  
+  /* Loading */
+  .loading-calendario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    gap: 1.5rem;
+  }
+  
+  .spinner-large-calendario {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #f3e8ff;
+    border-top-color: #8b5cf6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .loading-calendario p {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #64748b;
+  }
+  
+  /* ========================================
+     MODAL PAGOS DEL DÍA
+  ======================================== */
+  
+  .modal-overlay-calendario {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 2rem;
+    animation: fadeIn 0.3s ease;
+    overflow-y: auto;
+  }
+  
+  .modal-content-calendario {
+    background: white;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 80px rgba(139, 92, 246, 0.4);
+    animation: slideUp 0.4s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .modal-header-calendario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2.5rem;
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    border-radius: 24px 24px 0 0;
+  }
+  
+  .modal-header-calendario h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .modal-header-calendario h2 svg {
+    font-size: 2rem;
+  }
+  
+  .btn-close-calendario {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+    font-size: 1.75rem;
+  }
+  
+  .btn-close-calendario:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+  
+  .modal-body-calendario {
+    padding: 2.5rem;
+  }
+  
+  /* Stats del Día */
+  .pagos-dia-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-dia {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+  }
+  
+  .stat-dia svg {
+    font-size: 2rem;
+    color: #8b5cf6;
+  }
+  
+  .stat-dia-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+  }
+  
+  .stat-dia-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+  }
+  
+  /* Lista de Pagos del Día */
+  .pagos-dia-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .pago-dia-card {
+    padding: 1.75rem;
+    background: white;
+    border: 3px solid;
+    border-radius: 16px;
+    transition: all 0.3s;
+  }
+  
+  .pago-dia-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pago-dia-card.pagado {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  }
+  
+  .pago-dia-card.pendiente {
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  }
+  
+  .pago-dia-card.vencido {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  }
+  
+  .pago-dia-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .estudiante-info-dia {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .estudiante-avatar-dia {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+  
+  .estudiante-info-dia h4 {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .estudiante-info-dia p {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+    font-weight: 600;
+  }
+  
+  .estado-badge-dia {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+  
+  .estado-badge-dia.pagado {
+    background: #10b981;
+    color: white;
+  }
+  
+  .estado-badge-dia.pendiente {
+    background: #f59e0b;
+    color: white;
+  }
+  
+  .estado-badge-dia.vencido {
+    background: #ef4444;
+    color: white;
+  }
+  
+  .pago-dia-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+  }
+  
+  .detail-row span:first-child {
+    color: #64748b;
+    font-weight: 600;
+  }
+  
+  .detail-row span:last-child {
+    font-weight: 800;
+    color: #0f172a;
+  }
+  
+  .monto-total {
+    font-size: 1.125rem !important;
+  }
+  
+  .monto-abonado {
+    color: #10b981 !important;
+  }
+  
+  .monto-pendiente {
+    color: #ef4444 !important;
+    font-size: 1.125rem !important;
+  }
+  
+  .btn-agregar-abono-calendario {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.3s;
+  }
+  
+  .btn-agregar-abono-calendario:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+  }
+  
+  /* ========================================
+     RESPONSIVE
+  ======================================== */
+  
+  @media (max-width: 1400px) {
+    .calendario-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .custom-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .toolbar-center {
+      order: -1;
+      margin-bottom: 1rem;
+    }
+    
+    .pagos-dia-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .calendario-pagos-page {
+      padding: 1rem;
+    }
+    
+    .calendario-hero {
+      padding: 2rem;
+    }
+    
+    .hero-text-calendario h1 {
+      font-size: 1.75rem;
+    }
+    
+    .calendario-stats {
+      grid-template-columns: 1fr;
+    }
+    
+    .calendario-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .toolbar-filtros {
+      flex-direction: column;
+    }
+    
+    .filter-group-calendario {
+      min-width: auto;
+    }
+    
+    .calendario-leyenda {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .toolbar-navigation,
+    .toolbar-views {
+      width: 100%;
+    }
+    
+    .toolbar-btn,
+    .view-btn {
+      flex: 1;
+      justify-content: center;
+    }
+  }

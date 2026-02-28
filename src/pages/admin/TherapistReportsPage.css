@@ -1,0 +1,2031 @@
+/* ========== THERAPIST REPORTS PAGE ========== */
+
+.therapist-reports-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    padding: 2rem;
+  }
+  
+  .reports-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  /* Loading State */
+  .therapist-reports-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 1rem;
+  }
+  
+  .spinner-large {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #f1f5f9;
+    border-top-color: #d946ef;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* ========== HEADER ========== */
+  .reports-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .header-title-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .header-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 8px 24px rgba(217, 70, 239, 0.3);
+  }
+  
+  .reports-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .reports-subtitle {
+    font-size: 1rem;
+    color: #64748b;
+    margin: 0;
+  }
+  
+  /* Month Selector */
+  .month-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 2px solid #f1f5f9;
+  }
+  
+  .month-nav-btn {
+    width: 36px;
+    height: 36px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #64748b;
+    font-size: 1.25rem;
+  }
+  
+  .month-nav-btn:hover {
+    background: #d946ef;
+    border-color: #d946ef;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .month-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    min-width: 200px;
+    justify-content: center;
+  }
+  
+  .month-display svg {
+    color: #d946ef;
+    font-size: 1.25rem;
+  }
+  
+  /* ========== STATS GRID ========== */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border: 2px solid transparent;
+    transition: all 0.3s;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-card.primary {
+    border-color: #e9d5ff;
+    background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
+  }
+  
+  .stat-card.success {
+    border-color: #d1fae5;
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  }
+  
+  .stat-card.warning {
+    border-color: #fef3c7;
+    background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+  }
+  
+  .stat-card.info {
+    border-color: #dbeafe;
+    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+  }
+  
+  .stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    flex-shrink: 0;
+  }
+  
+  .stat-card.primary .stat-icon {
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    color: white;
+  }
+  
+  .stat-card.success .stat-icon {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+  }
+  
+  .stat-card.warning .stat-icon {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+  }
+  
+  .stat-card.info .stat-icon {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+  }
+  
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .stat-value {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+  }
+  
+  .stat-value small {
+    font-size: 1.125rem;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+  
+  .stat-detail {
+    font-size: 0.875rem;
+    color: #10b981;
+    font-weight: 600;
+  }
+  
+  /* ========== THERAPIST OF THE MONTH ========== */
+  .therapist-of-month-card {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 3px solid #fbbf24;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(251, 191, 36, 0.25);
+  }
+  
+  .card-header-special {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .award-icon {
+    font-size: 2.5rem;
+    color: #f59e0b;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  .card-header-special h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #92400e;
+    margin: 0;
+  }
+  
+  .therapist-of-month-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+  }
+  
+  .therapist-avatar-large {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+  
+  .therapist-avatar-large img,
+  .avatar-placeholder-large {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 4px solid #fbbf24;
+  }
+  
+  .avatar-placeholder-large {
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+  }
+  
+  .avatar-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    border: 3px solid #fbbf24;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .therapist-info-large {
+    flex: 1;
+  }
+  
+  .therapist-info-large h3 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .speciality {
+    font-size: 1.125rem;
+    color: #7c3aed;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+  }
+  
+  .therapist-stats-inline {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .stat-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #475569;
+  }
+  
+  .stat-inline svg {
+    color: #d946ef;
+    font-size: 1.25rem;
+  }
+  
+  .stat-inline strong {
+    color: #0f172a;
+  }
+  
+  /* ========== TABS ========== */
+  .reports-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+  
+  .tab-btn {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .tab-btn:hover {
+    background: #f8fafc;
+    color: #0f172a;
+  }
+  
+  .tab-btn.active {
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(217, 70, 239, 0.3);
+  }
+  
+  /* ========== TAB CONTENT ========== */
+  .tab-content {
+    min-height: 400px;
+  }
+  
+  .tab-placeholder {
+    text-align: center;
+    padding: 4rem;
+    color: #64748b;
+    font-size: 1.125rem;
+  }
+  
+  /* ========== TOP THERAPISTS SECTION ========== */
+  .top-therapists-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f1f5f9;
+  }
+  
+  .section-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+  }
+  
+  .section-header h2 svg {
+    color: #d946ef;
+    font-size: 1.5rem;
+  }
+  
+  .btn-export {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+  }
+  
+  .btn-export:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  }
+  
+  .top-therapists-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .top-therapist-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border: 2px solid #e9d5ff;
+    border-radius: 12px;
+    transition: all 0.3s;
+  }
+  
+  .top-therapist-item:hover {
+    transform: translateX(8px);
+    border-color: #d946ef;
+    box-shadow: 0 4px 16px rgba(217, 70, 239, 0.15);
+  }
+  
+  .rank-badge {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #d946ef;
+    flex-shrink: 0;
+    border: 2px solid #e9d5ff;
+  }
+  
+  .therapist-avatar-small {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+  }
+  
+  .therapist-avatar-small img,
+  .avatar-placeholder-small {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid #d946ef;
+  }
+  
+  .avatar-placeholder-small {
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: white;
+  }
+  
+  .therapist-info-compact {
+    flex: 1;
+  }
+  
+  .therapist-info-compact h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .therapist-info-compact p {
+    font-size: 0.875rem;
+    color: #7c3aed;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .therapist-metrics {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .metric-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #475569;
+  }
+  
+  .metric-item svg {
+    color: #d946ef;
+    font-size: 1.125rem;
+  }
+  
+  /* ========== CHART SECTION ========== */
+  .monthly-chart-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+  
+  .chart-container {
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 12px;
+  }
+  
+  .simple-bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5rem;
+    height: 300px;
+    padding: 1rem;
+  }
+  
+  .chart-bar-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%;
+  }
+  
+  .chart-bar-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  
+  .chart-bar {
+    width: 100%;
+    max-width: 80px;
+    background: linear-gradient(180deg, #d946ef 0%, #c026d3 100%);
+    border-radius: 8px 8px 0 0;
+    min-height: 30px;
+    position: relative;
+    transition: all 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.5rem;
+  }
+  
+  .chart-bar:hover {
+    background: linear-gradient(180deg, #e879f9 0%, #d946ef 100%);
+    transform: scaleY(1.05);
+  }
+  
+  .bar-value {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  
+  .chart-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: uppercase;
+  }
+  
+  .chart-sublabel {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 600;
+  }
+  
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1200px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .therapist-reports-page {
+      padding: 1rem;
+    }
+  
+    .reports-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .header-title-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .header-icon {
+      width: 56px;
+      height: 56px;
+      font-size: 1.75rem;
+    }
+  
+    .reports-title {
+      font-size: 1.75rem;
+    }
+  
+    .month-selector {
+      width: 100%;
+    }
+  
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .therapist-of-month-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .therapist-stats-inline {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  
+    .reports-tabs {
+      flex-direction: column;
+    }
+  
+    .top-therapist-item {
+      flex-wrap: wrap;
+    }
+  
+    .therapist-metrics {
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  
+    .simple-bar-chart {
+      gap: 0.75rem;
+      height: 250px;
+    }
+  
+    .bar-value {
+      font-size: 0.625rem;
+    }
+  }
+
+
+/* ========== THERAPIST REPORTS PAGE ========== */
+
+.therapist-reports-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    padding: 2rem;
+  }
+  
+  .reports-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  /* ========== LOADING STATE ========== */
+  .therapist-reports-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 1.5rem;
+  }
+  
+  .spinner-large {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #f1f5f9;
+    border-top-color: #d946ef;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .therapist-reports-loading p {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #64748b;
+  }
+  
+  /* ========== HEADER ========== */
+  .reports-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 2px solid #f1f5f9;
+  }
+  
+  .header-title-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .header-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 8px 24px rgba(217, 70, 239, 0.3);
+  }
+  
+  .reports-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .reports-subtitle {
+    font-size: 1rem;
+    color: #64748b;
+    margin: 0;
+  }
+  
+  /* Month Selector */
+  .month-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8fafc;
+    padding: 0.5rem;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+  }
+  
+  .month-nav-btn {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #64748b;
+    font-size: 1.25rem;
+  }
+  
+  .month-nav-btn:hover {
+    background: #d946ef;
+    border-color: #d946ef;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .month-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    min-width: 200px;
+    justify-content: center;
+  }
+  
+  .month-display svg {
+    color: #d946ef;
+    font-size: 1.25rem;
+  }
+  
+  /* ========== STATS GRID ========== */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-card {
+    background: white;
+    padding: 1.75rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 2px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    transition: all 0.3s;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  .stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .stat-card.primary .stat-icon {
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+  }
+  
+  .stat-card.success .stat-icon {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  }
+  
+  .stat-card.warning .stat-icon {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  }
+  
+  .stat-card.info .stat-icon {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  }
+  
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+  }
+  
+  .stat-value small {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+  
+  .stat-detail {
+    font-size: 0.875rem;
+    color: #10b981;
+    font-weight: 600;
+  }
+  
+  /* ========== THERAPIST OF MONTH ========== */
+  .therapist-of-month-card {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 3px solid #fbbf24;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(251, 191, 36, 0.3);
+  }
+  
+  .card-header-special {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .award-icon {
+    font-size: 2rem;
+    color: #d97706;
+  }
+  
+  .card-header-special h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #92400e;
+    margin: 0;
+  }
+  
+  .therapist-of-month-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .therapist-avatar-large {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+  }
+  
+  .therapist-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .avatar-placeholder-large {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+  }
+  
+  .avatar-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .therapist-info-large h3 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #78350f;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .speciality {
+    font-size: 1rem;
+    color: #92400e;
+    font-weight: 600;
+    margin: 0 0 1.25rem 0;
+  }
+  
+  .therapist-stats-inline {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .stat-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #92400e;
+    font-size: 1rem;
+  }
+  
+  .stat-inline svg {
+    color: #d97706;
+    font-size: 1.25rem;
+  }
+  
+  .stat-inline strong {
+    color: #78350f;
+  }
+  
+  /* ========== TABS ========== */
+  .reports-tabs {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 0.75rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 2px solid #f1f5f9;
+  }
+  
+  .tab-btn {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .tab-btn:hover {
+    background: #f8fafc;
+    color: #0f172a;
+  }
+  
+  .tab-btn.active {
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(217, 70, 239, 0.3);
+  }
+  
+  .tab-btn svg {
+    font-size: 1.25rem;
+  }
+  
+  /* ========== TAB CONTENT ========== */
+  .tab-content {
+    min-height: 400px;
+  }
+  
+  .tab-placeholder {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #64748b;
+    font-size: 1.125rem;
+  }
+  
+  /* ========== TOP THERAPISTS SECTION ========== */
+  .top-therapists-section {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 2px solid #f1f5f9;
+    margin-bottom: 2rem;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #f1f5f9;
+  }
+  
+  .section-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+  }
+  
+  .section-header svg {
+    color: #d946ef;
+    font-size: 1.5rem;
+  }
+  
+  .btn-export {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  }
+  
+  .btn-export:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  }
+  
+  /* Top Therapists List */
+  .top-therapists-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .top-therapist-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border: 2px solid #e9d5ff;
+    border-radius: 16px;
+    transition: all 0.3s;
+  }
+  
+  .top-therapist-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 24px rgba(217, 70, 239, 0.15);
+  }
+  
+  .rank-badge {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border: 2px solid #d946ef;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #d946ef;
+    flex-shrink: 0;
+  }
+  
+  .therapist-avatar-small {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+  }
+  
+  .therapist-avatar-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .avatar-placeholder-small {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: white;
+  }
+  
+  .therapist-info-compact {
+    flex: 1;
+  }
+  
+  .therapist-info-compact h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .therapist-info-compact p {
+    font-size: 0.875rem;
+    color: #7c3aed;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .therapist-metrics {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .metric-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+  
+  .metric-item svg {
+    color: #d946ef;
+    font-size: 1.125rem;
+  }
+  
+  /* ========== MONTHLY CHART ========== */
+  .monthly-chart-section {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 2px solid #f1f5f9;
+  }
+  
+  .chart-container {
+    padding: 2rem 1rem;
+  }
+  
+  .simple-bar-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 300px;
+    gap: 1rem;
+  }
+  
+  .chart-bar-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%;
+  }
+  
+  .chart-bar-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  
+  .chart-bar {
+    width: 100%;
+    max-width: 80px;
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    border-radius: 8px 8px 0 0;
+    min-height: 40px;
+    position: relative;
+    transition: all 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.5rem;
+  }
+  
+  .chart-bar:hover {
+    opacity: 0.8;
+    transform: scaleY(1.05);
+  }
+  
+  .bar-value {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    white-space: nowrap;
+  }
+  
+  .chart-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: uppercase;
+  }
+  
+  .chart-sublabel {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 600;
+  }
+  
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1200px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .therapist-reports-page {
+      padding: 1rem;
+    }
+  
+    .reports-header {
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+  
+    .header-title-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .reports-title {
+      font-size: 1.5rem;
+    }
+  
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .therapist-of-month-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .therapist-stats-inline {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  
+    .reports-tabs {
+      flex-direction: column;
+    }
+  
+    .top-therapist-item {
+      flex-wrap: wrap;
+    }
+  
+    .therapist-metrics {
+      width: 100%;
+      justify-content: space-around;
+    }
+  
+    .simple-bar-chart {
+      height: 250px;
+      gap: 0.5rem;
+    }
+  
+    .bar-value {
+      font-size: 0.625rem;
+    }
+  }
+
+
+
+
+
+
+
+  /* ========== TAB LOADING & ERROR ========== */
+.tab-loading,
+.tab-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 1rem;
+}
+
+.spinner-small {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f1f5f9;
+  border-top-color: #d946ef;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.tab-loading p {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.tab-error {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+/* ========== TAB HEADER ========== */
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.tab-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.tab-header svg {
+  color: #d946ef;
+  font-size: 1.75rem;
+}
+
+/* ========== ATTENDANCE TAB ========== */
+.attendance-tab-content {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 2px solid #f1f5f9;
+}
+
+/* Table Wrapper */
+.attendance-table-wrapper,
+.earnings-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  border: 2px solid #f1f5f9;
+}
+
+/* Tables */
+.attendance-table,
+.earnings-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.attendance-table thead,
+.earnings-table thead {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+}
+
+.attendance-table th,
+.earnings-table th {
+  padding: 1.25rem 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #7c3aed;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e9d5ff;
+}
+
+.attendance-table th.sortable,
+.earnings-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.attendance-table th.sortable:hover,
+.earnings-table th.sortable:hover {
+  background: rgba(217, 70, 239, 0.1);
+  color: #d946ef;
+}
+
+.sort-indicator {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: #d946ef;
+}
+
+.attendance-table tbody tr,
+.earnings-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.3s;
+}
+
+.attendance-table tbody tr:hover,
+.earnings-table tbody tr:hover {
+  background: #faf5ff;
+}
+
+.attendance-table td,
+.earnings-table td {
+  padding: 1.25rem 1rem;
+  font-size: 0.9375rem;
+  color: #475569;
+}
+
+/* Therapist Cell */
+.therapist-cell {
+  min-width: 200px;
+}
+
+.therapist-info-row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.avatar-tiny {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #e9d5ff;
+  flex-shrink: 0;
+}
+
+.avatar-tiny img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder-tiny {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: white;
+}
+
+.therapist-name {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Specialty Badge */
+.speciality-badge {
+  display: inline-block;
+  padding: 0.375rem 0.875rem;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Numeric Cell */
+.numeric-cell {
+  text-align: center;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.5rem 0.875rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  min-width: 45px;
+  text-align: center;
+}
+
+.badge-primary {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+  color: #7c3aed;
+  border: 2px solid #e9d5ff;
+}
+
+.badge-success {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: #047857;
+  border: 2px solid #6ee7b7;
+}
+
+.badge-warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #92400e;
+  border: 2px solid #fbbf24;
+}
+
+.badge-danger {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #991b1b;
+  border: 2px solid #f87171;
+}
+
+.badge-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
+  border: 2px solid #60a5fa;
+}
+
+/* Progress Cell */
+.progress-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.progress-bar-wrapper {
+  flex: 1;
+  max-width: 120px;
+  height: 10px;
+  background: #f1f5f9;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.progress-text {
+  font-weight: 700;
+  font-size: 0.875rem;
+  min-width: 50px;
+  text-align: right;
+}
+
+/* Empty Table */
+.empty-table {
+  padding: 3rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* ========== ATTENDANCE SUMMARY ========== */
+.attendance-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.summary-card {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+  border: 2px solid #e9d5ff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.summary-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.summary-icon.success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.summary-icon.warning {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.summary-icon.danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.summary-icon.info {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.summary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.summary-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* ========== EARNINGS TAB ========== */
+.earnings-tab-content {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 2px solid #f1f5f9;
+}
+
+/* Earnings Totals */
+.earnings-totals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.total-card {
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border: 2px solid;
+}
+
+.total-card.total-primary {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+  border-color: #e9d5ff;
+}
+
+.total-card.total-warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-color: #fbbf24;
+}
+
+.total-card.total-success {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border-color: #6ee7b7;
+}
+
+.total-icon {
+  font-size: 3rem;
+}
+
+.total-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.total-label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.total-card.total-primary .total-label {
+  color: #7c3aed;
+}
+
+.total-card.total-warning .total-label {
+  color: #92400e;
+}
+
+.total-card.total-success .total-label {
+  color: #047857;
+}
+
+.total-amount {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+/* Price Text */
+.price-text {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.price-text.primary {
+  color: #7c3aed;
+}
+
+.price-text.warning {
+  color: #d97706;
+}
+
+.price-text.success {
+  color: #059669;
+}
+
+/* Totals Row */
+.totals-row {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+  border-top: 3px solid #d946ef !important;
+}
+
+.totals-row td {
+  font-weight: 700;
+  color: #0f172a;
+  padding: 1.5rem 1rem;
+}
+
+/* ========== DISTRIBUTION SECTION ========== */
+.distribution-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #f1f5f9;
+}
+
+.distribution-section h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 1.5rem 0;
+}
+
+.distribution-chart {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.distribution-bar {
+  display: flex;
+  height: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.distribution-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.distribution-segment:hover {
+  filter: brightness(1.1);
+}
+
+.distribution-segment.comision {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.distribution-segment.ganancia {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1200px) {
+  .attendance-summary,
+  .earnings-totals {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .tab-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .attendance-summary,
+  .earnings-totals {
+    grid-template-columns: 1fr;
+  }
+
+  .attendance-table,
+  .earnings-table {
+    font-size: 0.875rem;
+  }
+
+  .attendance-table th,
+  .earnings-table th,
+  .attendance-table td,
+  .earnings-table td {
+    padding: 0.875rem 0.5rem;
+  }
+
+  .therapist-cell {
+    min-width: 150px;
+  }
+
+  .avatar-tiny {
+    width: 32px;
+    height: 32px;
+  }
+
+  .therapist-name {
+    font-size: 0.875rem;
+  }
+
+  .distribution-bar {
+    height: 50px;
+    flex-direction: column;
+  }
+
+  .distribution-segment span {
+    font-size: 0.875rem;
+  }
+}
+
+
+
+
+/* ========== EXPORT BUTTONS ========== */
+.export-buttons {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .btn-export {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .btn-export:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-export.excel {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+  }
+  
+  .btn-export.pdf {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+  }
+  
+  .btn-export svg {
+    font-size: 1.125rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .export-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .btn-export {
+      width: 100%;
+      justify-content: center;
+    }
+  }
